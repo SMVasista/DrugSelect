@@ -289,10 +289,7 @@ if __name__=="__main__":
     uD = readUnitData(uids, method='file')
     X = composeMatrix(c_list, h_list, uD, method='file')
     sX = llp_solver.psvd(X, end_points='auto')
-    for elem in sX:
-        for comp in sX[elem]:
-            for q in sX[elem][comp]:
-                print q, sX[elem][comp][q]
+    print('Done')
     #plotter.report(sX)
     
         
