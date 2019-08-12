@@ -17,6 +17,7 @@ def psvd(IDX, end_points):
     for uid in IDX:
         UDX[uid] = {}
         for form in IDX[uid]:
+            UDX[uid][form] = {}
             #Solving n-combinatorial weight function
             #U*w = I
             #w = inv(U)*I
