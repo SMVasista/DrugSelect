@@ -33,6 +33,7 @@ def psvd(IDX, end_points):
                     ep.append(float(1))
                 ep = np.matrix(ep).reshape(len(ep), 1)
             else:
+                print(uid)
                 ep = compose_ep(IDX[uid][form][0])
             try:
                 w = ((mx).I)*ep

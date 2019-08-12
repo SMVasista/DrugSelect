@@ -1,5 +1,5 @@
 from __future__ import division
-#from mysql.connector import connection
+from mysql.connector import connection
 import math, sys, os, re, random
 from datetime import date,datetime
 import futils
@@ -41,7 +41,7 @@ class DbUtils:
     cnx = None
 
     @classmethod
-    def readConfig(cls, cfgFile='./config.ext'):
+    def readConfig(cls, cfgFile='./config'):
         config = {}
         lines = futils.readLines(cfgFile)
         for line in lines:
@@ -50,7 +50,7 @@ class DbUtils:
                 config[key.strip()] = value.strip()
         return config
 
-    def __init__(self, cfgFile='./config.ext'):
+    def __init__(self, cfgFile='./config'):
         if DbUtils.cnx == None:
             config = DbUtils.readConfig(cfgFile)
             DbUtils.cnx = connection.MySQLConnection(user=config["user"], password=config["password"], host=config["host"], database=config["database"])
@@ -119,7 +119,7 @@ def readUnitData(uids, method):
     elif method == 'file':
         uData = {}
         for uid in uids:
-            fileLoc = "C:\\\\Users\\\\dell\\\\Desktop\\\\python_consultancy_projects\\\\Pr3-OR\\\\sample_dbs\\\\a"#raw_input("uid data location> ")
+            fileLoc = input("uid data location> ")
             try:
                 rows = futils.readLinesAndSplit(fileLoc, ',')
                 uData[uid] = {'indc': rows[0][2], 'mut': {}, 'cna': {}, 'pdata': {}}
@@ -144,7 +144,7 @@ def seggregate_p_g_components(uData):
         query = "SELECT * FROM INDC_COMPOSITION WHERE 1"
         indc_rows = DbUtils.query(cursor, query)
     except:
-        fileLoc = "C:\\Users\\dell\\Desktop\\python_consultancy_projects\\Pr3-OR\\sample_dbs\\d"#raw_input('Indication composition file to proceed> ')
+        fileLoc = input('Indication composition file to proceed> ')
         indc_rows = futils.readLinesAndSplit(fileLoc, ',')
         
     #Reading P-G mapping
@@ -152,7 +152,7 @@ def seggregate_p_g_components(uData):
         query = "SELECT * FROM GP_MAP WHERE 1"
         key_rows = DbUtils.query(cursor, query)
     except:
-        fileLoc = "C:\\Users\\dell\\Desktop\\python_consultancy_projects\\Pr3-OR\\sample_dbs\\e"#raw_input('G-P file to proceed> ')
+        fileLoc = input('G-P file to proceed> ')
         key_rows = futils.readLinesAndSplit(fileLoc, ',')        
 
     for uid in uData:
@@ -219,9 +219,9 @@ def composeMatrix(C_list, H_list, uData, method):
 
     elif method == 'file':
         BIN = []
-        G_ASSO = "C:\\Users\\dell\\Desktop\\python_consultancy_projects\\Pr3-OR\\sample_dbs\\b"#raw_input('Location of drug-on-gene/pathway assocation data matrix (all drugs + chemo)> ')
+        G_ASSO = input('Location of drug-on-gene/pathway assocation data matrix (all drugs + chemo)> ')
         cg_drg_rows = futils.readLinesAndSplit(G_ASSO, ',')
-        P_ASSO = "C:\\Users\\dell\\Desktop\\python_consultancy_projects\\Pr3-OR\\sample_dbs\\c"#raw_input('Location of drug-target assocation data matrix (all drugs + chemo)> ')
+        P_ASSO = input('Location of drug-target assocation data matrix (all drugs + chemo)> ')
         hp_drg_rows = futils.readLinesAndSplit(P_ASSO, ',')
 
         C_BIN = {}
