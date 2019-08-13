@@ -34,7 +34,6 @@ def svd(S1, S2):
     #w = inv(S1)*S2                         #
     #w^ = max(w)                            #
     #########################################
-    #Adding regularization
     try:
         return (S1.I)*S2
     except:
@@ -47,7 +46,6 @@ def svd(S1, S2):
                 for k in range(col):
                     J.append(0.05 if i == k else 0.0)
             J = np.matrix(J).reshape(row, col)
-            print S2
             return ((S1+J).I)*S2
         except:
             print("Failed to compute weights matrix...")
