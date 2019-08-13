@@ -20,7 +20,7 @@ def get_ep(y_label, end_points):
         ep = np.matrix(ep).reshape(len(ep), 1)
     else:
         print(uid)
-        ep = compose_ep(IDX[uid][form][0])
+        ep = compose_ep(y_label)
     return ep
 
 
