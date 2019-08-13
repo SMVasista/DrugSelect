@@ -12,6 +12,47 @@ def compose_ep(y_label):
         b.append(q/sum(a))
     return np.matrix(b).reshape(len(b), 1)
 
+def get_ep(y_label, end_points):
+    if end_points == 'auto':
+        ep = []
+        for i in range(len(y_label)):
+            ep.append(float(1))
+        ep = np.matrix(ep).reshape(len(ep), 1)
+    else:
+        print(uid)
+        ep = compose_ep(IDX[uid][form][0])
+    return ep
+
+
+def reformMatrix(row, col, array):
+    return np.matrix(array).reshape(row, col)
+
+def svd(S1, S2):
+    #########################################
+    #Solving n-combinatorial weight function#
+    #S1*w = S2                              #
+    #w = inv(S1)*S2                         #
+    #w^ = max(w)                            #
+    #########################################
+    #Adding regularization
+    try:
+        return (S1.I)*S2
+    except:
+        try:
+            #Adding regularization
+            row = S1.shape[0]
+            col = S1.shape[1]
+            J = []
+            for i in range(row):
+                for k in range(col):
+                    J.append(0.05 if i == k else 0.0)
+            J = np.matrix(J).reshape(row, col)
+            print S2
+            return ((S1+J).I)*S2
+        except:
+            print("Failed to compute weights matrix...")
+            pass
+
 def psvd(IDX, end_points):
     print("Solving matrix...")
     UDX = {}
@@ -20,26 +61,11 @@ def psvd(IDX, end_points):
         UDX[uid] = {}
         for form in IDX[uid]:
             UDX[uid][form] = {}
-            #########################################
-            #Solving n-combinatorial weight function#
-            #U*w = I                                #
-            #w = inv(U)*I                           #
-            #w^ = max(w)                            #
-            #########################################
-            mx = np.matrix(IDX[uid][form][2]).reshape(len(IDX[uid][form][0]), len(IDX[uid][form][1]))
-            if end_points == 'auto':
-                ep = []
-                for i in range(len(IDX[uid][form][0])):
-                    ep.append(float(1))
-                ep = np.matrix(ep).reshape(len(ep), 1)
-            else:
-                print(uid)
-                ep = compose_ep(IDX[uid][form][0])
-            try:
-                w = ((mx).I)*ep
+            mx = reformMatrix(len(IDX[uid][form][0]), len(IDX[uid][form][1]), IDX[uid][form][2])
+            O = get_ep(IDX[uid][form][0], end_points)
+            w = svd(mx, O)
+            if type(w) != None:
                 for i in range(len(IDX[uid][form][1])):
-                    UDX[uid][form][IDX[uid][form][1][i]] = w[i]
-            except:
-                pass
+                    UDX[uid][form][IDX[uid][form][1][i]] = float(w[i])
     return UDX
                                                       
