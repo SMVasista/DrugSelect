@@ -209,7 +209,7 @@ def composeMatrix(C_list, H_list, uData, method):
             C_BIN[C_element] = cg_drg_rows + cp_drg_rows
 
         #Loading H-list data
-        H_BIN
+        H_BIN = <>
         for H_element in H_list:
             query = "SELECT * FROM G_HCOMP_ASSO WHERE HCOMP = \""+str(H_element)+"\""
             hg_drg_rows = DbUtils.query(cursor, query)
