@@ -111,7 +111,7 @@ def readUnitData(uids, method):
             for row in rows:
                 if getKeys('mutation', row[4]) and row[6] == 'NULL':
                     uData[uid]['mut'][row[3]] = row[5]
-                if getKeys('mutation', row[4]) and row[6] == 'NULL':
+                if getKeys('CNA', row[4]) and row[6] == 'NULL':
                     uData[uid]['cna'][row[3]] = row[5]
                 if row[3] == 'NULL' and row[6] != 'NULL':
                     uData[uid]['pdata'][row[6]] = row[7]
@@ -127,7 +127,7 @@ def readUnitData(uids, method):
                     data = futils.readLinesAndSplit(fileLoc, ',')
                     if getKeys('mutation', row[4]) and row[6] == 'NULL':
                         uData[uid]['mut'][row[3]] = row[5]
-                    if getKeys('mutation', row[4]) and row[6] == 'NULL':
+                    if getKeys('CNA', row[4]) and row[6] == 'NULL':
                         uData[uid]['cna'][row[3]] = row[5]
                     if row[3] == 'NULL' and row[6] != 'NULL':
                         uData[uid]['pdata'][row[6]] = row[7]
