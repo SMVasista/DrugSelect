@@ -1,0 +1,4 @@
+uid=TEST
+chemo=C1,C2
+non-chemo=H1,H2,H4,H5
+method=file
