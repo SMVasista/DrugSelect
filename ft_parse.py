@@ -268,7 +268,7 @@ def composeMatrix(C_list, H_list, uData, method):
                             g_score = 0
                             for k in H_BIN[d_elem]:
                                 if k[2] == element:
-                                    g_score += tt_wt[k[3]]*tta_wt[k[4]]*(1/(float(k[5])+1))
+                                    g_score += 0.1*tt_wt[k[3]]*tta_wt[k[4]]*(1/(float(k[5])+1))
                             #Calculating residual effect due to abberation
                             impact = 0
                             for k in C_BIN[chemo]:
