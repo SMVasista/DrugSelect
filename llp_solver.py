@@ -6,7 +6,7 @@ import numpy as np
 def compose_ep(y_label):
     a = []
     for i, elem in enumerate(y_label):
-        a.append(float(raw_input('enter absolute value of element '+str(elem)+' '+str(i+1)+'/'+str(len(y_label))+' in index> ')))
+        a.append(float(input('enter absolute value of element '+str(elem)+' '+str(i+1)+'/'+str(len(y_label))+' in index> ')))
     b = []
     for q in a:
         b.append(q/sum(a))
