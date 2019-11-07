@@ -27,19 +27,19 @@ E = np.array([[-1], [1], [-1], [0], [0], [0], [1], [0]])
 #1D ranks
 
 print("\n~~~~1D~~~~")
-print("H1:", (1/3)*(sum((H1)*E)))
-print("H2:", (1/3)*(sum((H2)*E)))
-print("H3:", (1/3)*(sum((H3)*E)))
+print("H1:", (1/2)*(sum((H1)*E)))
+print("H2:", (1/2)*(sum((H2)*E)))
+print("H3:", (1/2)*(sum((H3)*E)))
 
 #2D ranks
 print("\n~~~~2D~~~~")
-print("H1_H2:", (1/4)*sum((H1+H2)*E))
-print("H2_H3:", (1/4)*sum((H2+H3)*E))
-print("H3_H1:", (1/4)*sum((H3+H1)*E))
+print("H1_H2:", (1/3)*sum((H1+H2)*E))
+print("H2_H3:", (1/3)*sum((H2+H3)*E))
+print("H3_H1:", (1/3)*sum((H3+H1)*E))
 
 #3D ranks
 print("\n~~~~3D~~~~")
-print("H1_H2_H3:", (1/5)*sum((H1+H2+H3)*E))
+print("H1_H2_H3:", (1/4)*sum((H1+H2+H3)*E))
 
 K = {'H1': (1/3)*(sum((H1)*E))[0], 'H2': (1/3)*(sum((H2)*E))[0], 'H3': (1/3)*(sum((H3)*E))[0], 'H1_H2': (1/4)*sum((H1+H2)*E)[0], 'H2_H3': (1/4)*sum((H2+H3)*E)[0], 'H3_H1': (1/4)*sum((H3+H1)*E)[0], 'H1_H2_H3': (1/5)*sum((H1+H2+H3)*E)[0]}
 
