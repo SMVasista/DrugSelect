@@ -22,7 +22,7 @@ C = np.array([[-0.24], [0.07], [-0.005], [0], [0], [0], [0.25], [0]])
 E = np.array([[-1], [1], [-1], [0], [0], [0], [1], [0]])
 
 # J = I_ * H(i) #I_ not considered for simplification
-# R = 1/n *(J*E)
+# R = 1/(n+2) *(J*E)
 #Performing element-wise operation on the components to maximize function R
 #1D ranks
 
